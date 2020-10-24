@@ -11,9 +11,3 @@ class Calculator(object):
 
     def divide(self, a, b):
         return None # TODO - Implement method solution
-
-    def maximum(self, a, b):
-        return None # TODO - Implement method solution
-
-    def minimum(self, a, b):
-        return None # TODO - Implement method solution
