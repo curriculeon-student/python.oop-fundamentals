@@ -1,34 +1,40 @@
 # Created by Leon Hunter at 11:23 AM 10/24/2020
+from numbers import Number
 from unittest import TestCase
 
 from calculator import Calculator
 
-error_message = 'incorrect_value'
-
 
 class CalculationTester(TestCase):
-    def __init__(self, method_to_be_tested, value_sets):
-        super(CalculationTester, self).__init__()
-        self.value_sets = value_sets
-        self.method_to_test = method_to_be_tested
 
-    def test_value_sets(self):
-        for value_set in self.value_sets:
+    def _test_value_sets(self, method_to_test, value_sets):
+        for value_set in value_sets:
             # given
             first_value = value_set[0]
             second_value = value_set[1]
             expected_calculation = value_set[2]
 
             # when
-            actual_calculation = self.method_to_test(first_value, second_value)
+            actual_calculation = method_to_test(first_value, second_value)
 
             # then
-            self.assertAlmostEqual(expected_calculation, actual_calculation, error_message)
+            calculation_error_message = '''
+            first_value = {}
+            second_value = {}
+            expected_calculation = {}
+            actual_calculation = {}
+            '''.format(first_value, second_value, expected_calculation, actual_calculation)
 
+            return_type_error_message = '''
+            expected return value of {} to be of type Number
+            instead was type {}
+            '''.format(method_to_test.__name__, type(actual_calculation))
 
-class AddTester(CalculationTester):
-    def __init__(self):
-        super().__init__(Calculator().add, [
+            self.assertTrue(isinstance(actual_calculation, Number), return_type_error_message)
+            self.assertAlmostEqual(expected_calculation, actual_calculation, calculation_error_message)
+
+    def test_add(self):
+        self._test_value_sets(Calculator().add, [
             (1, 3, 4),
             (5, 8, 13),
             (13, 21, 34),
@@ -38,10 +44,8 @@ class AddTester(CalculationTester):
             (21, 13, 34),
         ])
 
-
-class SubtractTester(CalculationTester):
-    def __init__(self):
-        super().__init__(Calculator().subtract, [
+    def test_subtract(self):
+        self._test_value_sets(Calculator().subtract, [
             (1, 3, -2),
             (5, 8, -3),
             (13, 21, -8),
@@ -51,10 +55,8 @@ class SubtractTester(CalculationTester):
             (21, 13, 8),
         ])
 
-
-class MultiplyTester(CalculationTester):
-    def __init__(self):
-        super().__init__(Calculator().multiply, [
+    def test_multiply(self):
+        self._test_value_sets(Calculator().multiply, [
             (1, 3, 3),
             (5, 8, 40),
             (13, 21, 273),
@@ -64,10 +66,8 @@ class MultiplyTester(CalculationTester):
             (21, 13, 273),
         ])
 
-
-class DivideTester(CalculationTester):
-    def __init__(self):
-        super().__init__(Calculator().divide, [
+    def test_divide(self):
+        self._test_value_sets(Calculator().divide, [
             (1, 3, .333),
             (5, 8, .625),
             (13, 21, .619),
