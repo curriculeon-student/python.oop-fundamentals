@@ -1,7 +1,7 @@
 # Created by Leon Hunter at 3:57 PM 10/23/2020
 from unittest import TestCase
 
-from string_manipulator import StringManipulator
+from string_evaluator import StringManipulator
 
 
 class StringManipulatorTest(TestCase):
@@ -113,8 +113,6 @@ class StringManipulatorTest(TestCase):
             (True, 1, True)
         ])
 
-
-
     def test_get_first_word(self):
         self._test_unary_function(StringManipulator().get_first_word, [
             ("The quick brown fox", "The"),
@@ -128,7 +126,6 @@ class StringManipulatorTest(TestCase):
             ("Quick Brown Fox", "Brown"),
             ("Brown Fox", "Fox"),
         ])
-
 
     def test_get_hello_world(self):
         self._test_nullary_function(StringManipulator().get_hello_world, [["Hello World"]])

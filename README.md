@@ -34,54 +34,31 @@
 
 ## Predicate Utilities
 * A _predicate_ is a clause which states something about a subject. (_e.g., **is assigning**_ in _"Leon **is assigning** homework"_)
-* Ensure each of the test cases passes successfully in the class [TestPredicateUtilities](./src/main/java/com/github/perscholas/java_fundamentals/TestPredicateUtilities.java) by completing each of the method stubs in the class [PredicateUtilities](./src/main/java/com/github/perscholas/java_fundamentals/PredicateUtilities.java).
+* Ensure each of the test cases passes successfully in the class [predicator_test.py](./src/test/predicator_test.py) by completing each of the method stubs in the class [predicator.py](./src/main/predicator.py).
 * Method Stubs to be completed
-	* `boolean isGreaterThan(int x, int y)`
-	* `boolean isLessThan(int x, int y)`
-	* `boolean isGreaterThanOrEqualTo(int x, int y)`
-	* `boolean isLessThanOrEqualTo(int x, int y)`
-
+	* `is_greater_than_5(some_value)`
+	* `is_greater_than_8(some_value)`
+    * `is_less_than_4(some_value)`
+    * `is_less_than_1(some_value)`
 
 ## Math Utilities
-* Ensure each of the test cases passes successfully in the class [TestMathUtilities](../src/main/java/com/github/perscholas/java_fundamentals/TestMathUtilities.java) by completing each of the method stubs in the class [MathUtilities](src/main/java/com/github/perscholas/java_fundamentals/MathUtilities.java).
+* Ensure each of the test cases passes successfully in the class [calculator_test.py](./src/test/calculator_test.py) by completing each of the method stubs in the class [calculator.py](src/main/calculator.py).
 * Method Stubs to be completed	
-	* `Integer add(int, int)`
-	* `Long add(long, long)`
-	* `Short add(short, short)`
-	* `Byte add(byte, byte)`
-	* `Float add(float, float)`
-	* `Double add(double, double)`
-	* `Integer subtract(int, int)`
-	* `Long subtract(long, long)`
-	* `Short subtract(short, short)`
-	* `Byte subtract(byte, byte)`
-	* `Float subtract(float, float)`
-	* `Double subtract(double, double)`
-	* `Integer divide(int, int)`
-	* `Long divide(long, long)`
-	* `Short divide(short, short)`
-	* `Byte divide(byte, byte)`
-	* `Float divide(float, float)`
-	* `Double divide(double, double)`
-	* `Integer multiply(int, int)`
-	* `Long multiply(long, long)`
-	* `Short multiply(short, short)`
-	* `Byte multiply(byte, byte)`
-	* `Float multiply(float, float)`
-	* `Double multiply(double, double)`
-	* `Boolean returnTrue`
-	* `Boolean returnFalse`
+	* `add(first_value, second_value)`
+	* `subtract(first_value, second_value)`
+	* `divide(first_value, second_value)`
+	* `multiply(first_value, second_value)`
 
 
 ## String Utilities
-* Ensure each of the test cases passes successfully in the class [TestStringUtilities](../src/main/java/com/github/perscholas/java_fundamentals/TestStringUtilities.java) by completing each of the method stubs in the class [StringUtilities](src/main/java/com/github/perscholas/java_fundamentals/StringUtilities.java).
+* Ensure each of the test cases passes successfully in the class [string_evaluator_test.py](./src/test/string_evaluator_test.py) by completing each of the method stubs in the class [string_evaluator.py](src/main/string_evaluator.py).
 * Method Stubs to be completed
-	* `String concatenation(String, String)`
-	* `String concatenation(int, String)`
-	* `String getPrefix(String)`
-	* `String getSuffix(String)`
-	* `Boolean compareTwoStrings(String)`
-	* `Character getMiddleCharacter(String)`
-	* `String getFirstWord(String)`
-	* `String getSecondWord(String)`
-	* `String reverse(String)`
+    * `get_hello_world()`
+    * `concatenate(first_value, second_value)`
+    * `substring_inclusive(string_to_fetch_from, starting_index, ending_index)`
+    * `substring_exclusive(string_to_fetch_from, starting_index, ending_index)`
+    * `compare(first_value, second_value)`
+    * `get_middle_character(string_to_fetch_from)`
+    * `get_first_word(string_to_fetch_from)`
+    * `get_second_word(string_to_fetch_from)`
+    * `reverse(string_to_reverse)`
