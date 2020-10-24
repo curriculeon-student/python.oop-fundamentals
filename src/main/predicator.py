@@ -1,6 +1,5 @@
 # Created by Leon Hunter at 3:56 PM 10/23/2020
 class Predicator(object):
-
     def is_greater_than_5(self, some_value):
         return None
 

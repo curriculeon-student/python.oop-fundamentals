@@ -5,9 +5,8 @@ from unittest import TestCase
 from calculator import Calculator
 
 
-class CalculationTester(TestCase):
-
-    def _test_value_sets(self, method_to_test, value_sets):
+class CalculatorTest(TestCase):
+    def _test(self, method_to_test, value_sets):
         for value_set in value_sets:
             # given
             first_value = value_set[0]
@@ -17,7 +16,6 @@ class CalculationTester(TestCase):
             # when
             actual_calculation = method_to_test(first_value, second_value)
 
-            # then
             calculation_error_message = '''
             first_value = {}
             second_value = {}
@@ -26,15 +24,16 @@ class CalculationTester(TestCase):
             '''.format(first_value, second_value, expected_calculation, actual_calculation)
 
             return_type_error_message = '''
-            expected return value of {} to be of type Number
-            instead was type {}
+            expected return value of `{}` to be of type `Number`
+            instead was of type `{}`
             '''.format(method_to_test.__name__, type(actual_calculation))
 
+            # then
             self.assertTrue(isinstance(actual_calculation, Number), return_type_error_message)
             self.assertAlmostEqual(expected_calculation, actual_calculation, calculation_error_message)
 
     def test_add(self):
-        self._test_value_sets(Calculator().add, [
+        self._test(Calculator().add, [
             (1, 3, 4),
             (5, 8, 13),
             (13, 21, 34),
@@ -45,7 +44,7 @@ class CalculationTester(TestCase):
         ])
 
     def test_subtract(self):
-        self._test_value_sets(Calculator().subtract, [
+        self._test(Calculator().subtract, [
             (1, 3, -2),
             (5, 8, -3),
             (13, 21, -8),
@@ -56,7 +55,7 @@ class CalculationTester(TestCase):
         ])
 
     def test_multiply(self):
-        self._test_value_sets(Calculator().multiply, [
+        self._test(Calculator().multiply, [
             (1, 3, 3),
             (5, 8, 40),
             (13, 21, 273),
@@ -67,7 +66,7 @@ class CalculationTester(TestCase):
         ])
 
     def test_divide(self):
-        self._test_value_sets(Calculator().divide, [
+        self._test(Calculator().divide, [
             (1, 3, .333),
             (5, 8, .625),
             (13, 21, .619),

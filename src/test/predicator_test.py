@@ -3,60 +3,58 @@ from unittest import TestCase
 
 from predicator import Predicator
 
-error_message = 'incorrect_value'
-
 
 class PredicatorTester(TestCase):
-    def __init__(self, method_to_be_tested, value_sets):
-        self.value_sets = value_sets
-        self.method_to_test = method_to_be_tested
-
-    def test_value_sets(self):
-        for value_set in self.value_sets:
+    def _test(self, method_to_be_tested, value_sets):
+        for value_set in value_sets:
             # given
             first_value = value_set[0]
             expected_calculation = value_set[1]
 
             # when
-            actual_calculation = self.method_to_test(first_value)
+            actual_calculation = method_to_be_tested(first_value)
+
+            calculation_error_message = '''
+            first_value = {}
+            expected_calculation = {}
+            actual_calculation = {}
+            '''.format(first_value, expected_calculation, actual_calculation)
+
+            return_type_error_message = '''
+            expected return value of `{}` to be of type `bool`
+            instead was of type `{}`
+            '''.format(method_to_be_tested.__name__, type(actual_calculation))
 
             # then
-            self.assertAlmostEqual(expected_calculation, actual_calculation, error_message)
+            self.assertTrue(isinstance(actual_calculation, bool), return_type_error_message)
+            self.assertAlmostEqual(expected_calculation, actual_calculation, calculation_error_message)
 
-
-class IsGreaterThan5Test(PredicatorTester):
-    def __init__(self):
-        super().__init__(Predicator().is_greater_than_5, [
+    def test_is_greater_than_5(self):
+        self._test(Predicator().is_greater_than_5, [
             (1, False),
             (5, False),
             (6, True),
             (7, True)
         ])
 
-
-class IsGreaterThan8Test(PredicatorTester):
-    def __init__(self):
-        super().__init__(Predicator().is_greater_than_8, [
+    def test_is_greater_than_8(self):
+        self._test(Predicator().is_greater_than_8, [
             (1, False),
             (8, False),
             (10, True),
             (17, True)
         ])
 
-
-class IsLessThan1(PredicatorTester):
-    def __init__(self):
-        super().__init__(Predicator().is_less_than_1, [
+    def test_is_less_than_1(self):
+        self._test(Predicator().is_less_than_1, [
             (5, False),
             (1, False),
             (-6, True),
             (-7, True)
         ])
 
-
-class IsLessThan4(PredicatorTester):
-    def __init__(self):
-        super().__init__(Predicator().is_less_than_4, [
+    def test_is_less_than_4(self):
+        self._test(Predicator().is_less_than_4, [
             (5, False),
             (4, False),
             (2, True),
