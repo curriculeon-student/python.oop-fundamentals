@@ -8,10 +8,11 @@ error_message = 'incorrect_value'
 
 class CalculationTester(TestCase):
     def __init__(self, method_to_be_tested, value_sets):
+        super(CalculationTester, self).__init__()
         self.value_sets = value_sets
         self.method_to_test = method_to_be_tested
 
-    def _test_value_sets(self):
+    def test_value_sets(self):
         for value_set in self.value_sets:
             # given
             first_value = value_set[0]
@@ -22,7 +23,7 @@ class CalculationTester(TestCase):
             actual_calculation = self.method_to_test(first_value, second_value)
 
             # then
-            self.assertAlmostEqual(expected_calculation, actual_calculation, error_message, places=3)
+            self.assertAlmostEqual(expected_calculation, actual_calculation, error_message)
 
 
 class AddTester(CalculationTester):
@@ -31,7 +32,7 @@ class AddTester(CalculationTester):
             (1, 3, 4),
             (5, 8, 13),
             (13, 21, 34),
-            (0,0,0),
+            (0, 0, 0),
             (3, 1, 4),
             (8, 5, 13),
             (21, 13, 34),
@@ -44,7 +45,7 @@ class SubtractTester(CalculationTester):
             (1, 3, -2),
             (5, 8, -3),
             (13, 21, -8),
-            (0,0,0),
+            (0, 0, 0),
             (3, 1, 2),
             (8, 5, 3),
             (21, 13, 8),
@@ -57,11 +58,12 @@ class MultiplyTester(CalculationTester):
             (1, 3, 3),
             (5, 8, 40),
             (13, 21, 273),
-            (0,0,0),
+            (0, 0, 0),
             (3, 1, 3),
             (8, 5, 40),
             (21, 13, 273),
         ])
+
 
 class DivideTester(CalculationTester):
     def __init__(self):
@@ -69,9 +71,8 @@ class DivideTester(CalculationTester):
             (1, 3, .333),
             (5, 8, .625),
             (13, 21, .619),
-            (0,0,ZeroDivisionError),
+            (0, 0, ZeroDivisionError),
             (3, 1, 3),
             (8, 5, 1.6),
             (21, 13, 1.615),
         ])
-
