@@ -2,7 +2,7 @@
 from numbers import Number
 from unittest import TestCase
 
-from calculator import Calculator
+from src.main.calculator import Calculator
 
 
 class CalculatorTest(TestCase):
